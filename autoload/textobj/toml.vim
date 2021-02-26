@@ -38,12 +38,38 @@ function s:get_stopline()  " {{{1
 endfunction
 
 function! textobj#toml#plugins_select_a()  " {{{1
+  if !search(s:pat_plugins, 'bcW')
+    return
+  endif
+  let l:start = getpos('.')
 
+  if search(s:pat_plugins, 'W')
+    normal! {
+  else
+    normal! G
+  endif
+  let l:end = getpos('.')
+
+  return ['V', l:start, l:end]
 endfunction
 
 
 function! textobj#toml#plugins_select_i()  " {{{1
+  if !search(s:pat_plugins, 'bcW')
+    return
+  endif
+  normal! j
+  let l:start = getpos('.')
 
+  if search(s:pat_plugins, 'Wc')
+    normal! {
+  else
+    normal! G
+  endif
+  call search('^\S', 'bc')
+  let l:end = getpos('.')
+
+  return ['V', l:start, l:end]
 endfunction
 
 
@@ -85,30 +111,4 @@ function! textobj#toml#hook_select_a()  " {{{1
   return ['V', l:start, l:end]
 endfunction
 
-
-function! textobj#toml#hook_select_i()  " {{{1
-  let l:stopline = s:get_stopline()
-  if !l:stopline
-    return
-  endif
-
-  " 中身なしの場合
-  if search(s:pat_hook.."'''\\n'''", 'bc', l:stopline)
-    return
-  endif
-
-  " TODO: '''で終わらずにコメント行が始まる場合に対応できてない
-  "       現在は ''' の前後にコメントなど入らないと仮定している(linewise)
-  if !search(s:pat_hook.."'''", 'bc', l:stopline)
-    return
-  endif
-  normal! j
-  let l:start = getpos('.')
-
-  call search("'''", 'c')
-  normal! k
-  let l:end = getpos('.')
-
-  return ['V', l:start, l:end]
-endfunction
 

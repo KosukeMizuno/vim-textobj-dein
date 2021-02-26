@@ -34,6 +34,7 @@ endif
 " endif
 
 " TODO: ftplugin のこと考えてなかった
+" TODO: hook-i は context_filetypeでよくね？
 
 call textobj#user#plugin('toml', {
     \ 'plugins' : {
@@ -45,7 +46,6 @@ call textobj#user#plugin('toml', {
     \   },
     \ 'hook' : {
     \      'select-a' : 'aH', 'select-a-function' : 'textobj#toml#hook_select_a',
-    \      'select-i' : 'iH', 'select-i-function' : 'textobj#toml#hook_select_i',
     \   },
     \})
 
