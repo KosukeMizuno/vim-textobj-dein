@@ -27,7 +27,7 @@
 let s:pat_hook = '^\s*hook_\(add\|done_update\|post_source\|post_update\|source\)\s*=\s*'
 let s:pat_plugins = '^\s*\[\[plugins\]\]'
 
-function s:get_stopline()
+function s:get_stopline()  " {{{1
   let l:save_pos = getpos('.')
   if !search(s:pat_plugins, 'bc')
     return
@@ -47,20 +47,37 @@ function! textobj#toml#plugins_select_i()  " {{{1
 endfunction
 
 
-function! textobj#toml#repo_select_a()  " {{{1
+function! textobj#toml#repo_select_i()  " {{{1
+  if !search(s:pat_plugins, 'bc')
+    echo "xxx"
+    return
+  endif
 
+  if search('^\s*repo\s*=\s*".', 'e')
+    let l:start = getpos('.')
+    call search('."', 'c')
+  elseif search('^\s*repo\s*=\s*'.."'.", 'e')
+    let l:start = getpos('.')
+    call search(".'", 'c')
+  else
+    return
+  endif
+  let l:end = getpos('.')
+
+  return ['v', l:start, l:end]
 endfunction
 
 
 function! textobj#toml#hook_select_a()  " {{{1
   let l:stopline = s:get_stopline()
+  if !l:stopline
+    return
+  endif
 
   if !search(s:pat_hook.."'''", 'bc', l:stopline)
-    echo "x"
     return
   endif
   let l:start = getpos('.')
-  echo l:start
 
   call search("'''", 'e')
   call search("'''", 'e')
@@ -72,6 +89,9 @@ endfunction
 
 function! textobj#toml#hook_select_i()  " {{{1
   let l:stopline = s:get_stopline()
+  if !l:stopline
+    return
+  endif
 
   " 中身なしの場合
   if search(s:pat_hook.."'''\\n'''", 'bc', l:stopline)
