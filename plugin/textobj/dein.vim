@@ -1,5 +1,5 @@
 " =================================================================
-" Text objects for toml
+" Text objects for dein
 "
 " Copyright (C) 2021 Kosuke Mizuno
 "
@@ -24,32 +24,32 @@
 " }}}
 " =================================================================
 
-if exists('g:loaded_textobj_toml_plugin')
+if exists('g:loaded_textobj_dein_plugin')
   finish
 endif
 
-if exists('g:textobj_toml_no_default_key_mappings')
-  let s:stash = g:textobj_toml_no_default_key_mappings
+if exists('g:textobj_dein_no_default_key_mappings')
+  let s:stash = g:textobj_dein_no_default_key_mappings
 endif
-let g:textobj_toml_no_default_key_mappings = 0
+let g:textobj_dein_no_default_key_mappings = 0
 
-call textobj#user#plugin('toml', {
+call textobj#user#plugin('dein', {
     \ 'plugins' : {
-    \      'select-a' : 'ap', 'select-a-function' : 'textobj#toml#plugins_select_a',
-    \      'select-i' : 'ip', 'select-i-function' : 'textobj#toml#plugins_select_i',
+    \      'select-a' : 'ap', 'select-a-function' : 'textobj#dein#plugins_select_a',
+    \      'select-i' : 'ip', 'select-i-function' : 'textobj#dein#plugins_select_i',
     \   },
     \ 'repo' : {
-    \      'select-i' : 'ir', 'select-i-function' : 'textobj#toml#repo_select_i',
+    \      'select-i' : 'ir', 'select-i-function' : 'textobj#dein#repo_select_i',
     \   },
     \ 'hook' : {
-    \      'select-a' : 'ah', 'select-a-function' : 'textobj#toml#hook_select_a',
+    \      'select-a' : 'ah', 'select-a-function' : 'textobj#dein#hook_select_a',
     \   },
     \})
 
 if exists('s:stash')
-  g:textobj_toml_no_default_key_mappings = s:no_default_map
+  g:textobj_dein_no_default_key_mappings = s:no_default_map
 else
-  unlet g:textobj_toml_no_default_key_mappings
+  unlet g:textobj_dein_no_default_key_mappings
 endif
 
-let g:loaded_textobj_toml_plugin = 1
+let g:loaded_textobj_dein_plugin = 1

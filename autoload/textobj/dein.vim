@@ -1,5 +1,5 @@
 " =================================================================
-" Text objects for toml
+" Text objects for dein
 "
 " Copyright (C) 2021 Kosuke Mizuno
 "
@@ -37,7 +37,7 @@ function s:get_stopline()  " {{{1
   return l:stopline
 endfunction
 
-function! textobj#toml#plugins_select_a()  " {{{1
+function! textobj#dein#plugins_select_a()  " {{{1
   if !search(s:pat_plugins, 'bcW')
     return
   endif
@@ -54,7 +54,7 @@ function! textobj#toml#plugins_select_a()  " {{{1
 endfunction
 
 
-function! textobj#toml#plugins_select_i()  " {{{1
+function! textobj#dein#plugins_select_i()  " {{{1
   if !search(s:pat_plugins, 'bcW')
     return
   endif
@@ -73,7 +73,7 @@ function! textobj#toml#plugins_select_i()  " {{{1
 endfunction
 
 
-function! textobj#toml#repo_select_i()  " {{{1
+function! textobj#dein#repo_select_i()  " {{{1
   if !search(s:pat_plugins, 'bc')
     return
   endif
@@ -93,7 +93,7 @@ function! textobj#toml#repo_select_i()  " {{{1
 endfunction
 
 
-function! textobj#toml#hook_select_a()  " {{{1
+function! textobj#dein#hook_select_a()  " {{{1
   let l:stopline = s:get_stopline()
   if !l:stopline
     return

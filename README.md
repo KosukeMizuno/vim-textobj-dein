@@ -1,4 +1,4 @@
-# vim-textobj-toml
+# vim-textobj-dein
 
 Text objects for toml file for [dein.vim](https://github.com/Shougo/dein.vim).
 
