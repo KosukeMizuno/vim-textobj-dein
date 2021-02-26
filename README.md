@@ -16,3 +16,7 @@ Text objects for toml file for [dein.vim](https://github.com/Shougo/dein.vim).
 | ih     | hook script                             |
 | ah     | hook script with closures               |
 
+## License
+
+This plugin is licensed MIT, see [LICENSE](LICENSE).
+
