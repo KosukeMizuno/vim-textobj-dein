@@ -28,13 +28,12 @@ if exists('g:loaded_textobj_toml_plugin')
   finish
 endif
 
-" if exists('g:textobj_toml_no_default_key_mappings')
-"   s:no_default_map = g:textobj_toml_no_default_key_mappings
-"   g:textobj_toml_no_default_key_mappings = 0
-" endif
+if exists('g:textobj_toml_no_default_key_mappings')
+  let s:stash = g:textobj_toml_no_default_key_mappings
+endif
+let g:textobj_toml_no_default_key_mappings = 0
 
 " TODO: ftplugin のこと考えてなかった
-" TODO: hook-i は context_filetypeでよくね？
 
 call textobj#user#plugin('toml', {
     \ 'plugins' : {
@@ -45,12 +44,12 @@ call textobj#user#plugin('toml', {
     \      'select-i' : 'ir', 'select-i-function' : 'textobj#toml#repo_select_i',
     \   },
     \ 'hook' : {
-    \      'select-a' : 'aH', 'select-a-function' : 'textobj#toml#hook_select_a',
+    \      'select-a' : 'ah', 'select-a-function' : 'textobj#toml#hook_select_a',
     \   },
     \})
 
-" if exists('s:no_default_map')
-"   g:textobj_toml_no_default_key_mappings = s:no_default_map
-" endif
+if exists('s:stash')
+  g:textobj_toml_no_default_key_mappings = s:no_default_map
+endif
 
 let g:loaded_textobj_toml_plugin = 1
