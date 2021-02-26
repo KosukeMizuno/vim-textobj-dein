@@ -28,10 +28,13 @@ if exists('g:textobj_dein_no_default_key_mappings') && g:textobj_dein_no_default
   finish
 endif
 
-omap <buffer> ap <Plug>(textobj-dein-plugins-a)
-xmap <buffer> ap <Plug>(textobj-dein-plugins-a)
-omap <buffer> ip <Plug>(textobj-dein-plugins-i)
-xmap <buffer> ip <Plug>(textobj-dein-plugins-i)
+if !exists('g:textobj_dein_no_default_key_mapings_plugins') || !g:textobj_dein_no_default_key_mapings_plugins
+  omap <buffer> ap <Plug>(textobj-dein-plugins-a)
+  xmap <buffer> ap <Plug>(textobj-dein-plugins-a)
+  omap <buffer> ip <Plug>(textobj-dein-plugins-i)
+  xmap <buffer> ip <Plug>(textobj-dein-plugins-i)
+endif
+
 omap <buffer> ir <Plug>(textobj-dein-repo-i)
 xmap <buffer> ir <Plug>(textobj-dein-repo-i)
 omap <buffer> ah <Plug>(textobj-dein-hook-a)

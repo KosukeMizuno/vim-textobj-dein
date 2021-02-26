@@ -47,7 +47,7 @@ call textobj#user#plugin('dein', {
     \})
 
 if exists('s:stash')
-  g:textobj_dein_no_default_key_mappings = s:no_default_map
+  let g:textobj_dein_no_default_key_mappings = s:stash
 else
   unlet g:textobj_dein_no_default_key_mappings
 endif
