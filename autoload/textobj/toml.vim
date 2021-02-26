@@ -49,7 +49,6 @@ endfunction
 
 function! textobj#toml#repo_select_i()  " {{{1
   if !search(s:pat_plugins, 'bc')
-    echo "xxx"
     return
   endif
 
