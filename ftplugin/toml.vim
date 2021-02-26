@@ -24,32 +24,16 @@
 " }}}
 " =================================================================
 
-if exists('g:loaded_textobj_toml_plugin')
+if exists('g:textobj_toml_no_default_key_mappings') && g:textobj_toml_no_default_key_mappings
   finish
 endif
 
-if exists('g:textobj_toml_no_default_key_mappings')
-  let s:stash = g:textobj_toml_no_default_key_mappings
-endif
-let g:textobj_toml_no_default_key_mappings = 0
+omap <buffer> ap <Plug>(textobj-toml-plugins-a)
+xmap <buffer> ap <Plug>(textobj-toml-plugins-a)
+omap <buffer> ip <Plug>(textobj-toml-plugins-i)
+xmap <buffer> ip <Plug>(textobj-toml-plugins-i)
+omap <buffer> ir <Plug>(textobj-toml-repo-i)
+xmap <buffer> ir <Plug>(textobj-toml-repo-i)
+omap <buffer> ah <Plug>(textobj-toml-hook-a)
+xmap <buffer> ah <Plug>(textobj-toml-hook-a)
 
-call textobj#user#plugin('toml', {
-    \ 'plugins' : {
-    \      'select-a' : 'ap', 'select-a-function' : 'textobj#toml#plugins_select_a',
-    \      'select-i' : 'ip', 'select-i-function' : 'textobj#toml#plugins_select_i',
-    \   },
-    \ 'repo' : {
-    \      'select-i' : 'ir', 'select-i-function' : 'textobj#toml#repo_select_i',
-    \   },
-    \ 'hook' : {
-    \      'select-a' : 'ah', 'select-a-function' : 'textobj#toml#hook_select_a',
-    \   },
-    \})
-
-if exists('s:stash')
-  g:textobj_toml_no_default_key_mappings = s:no_default_map
-else
-  unlet g:textobj_toml_no_default_key_mappings
-endif
-
-let g:loaded_textobj_toml_plugin = 1

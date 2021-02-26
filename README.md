@@ -8,13 +8,12 @@ Text objects for toml file for [dein.vim](https://github.com/Shougo/dein.vim).
 
 ## usage
 
-| Keymap | target                                  |
-| ------ | --------------------------------------- |
-| ip     | single plugin config                    |
-| ap     | single plugin config with `[[plugins]]` |
-| ir     | repository name                         |
-| ih     | hook script                             |
-| ah     | hook script with closures               |
+| Keymap | target                    |
+| ------ | ------------------------- |
+| ap     | single plugin config      |
+| ip     | single plugin config      |
+| ir     | repository name           |
+| ah     | hook script with closures |
 
 ## License
 
