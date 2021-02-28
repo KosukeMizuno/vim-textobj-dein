@@ -29,7 +29,7 @@ let s:pat_plugins = '^\s*\[\[plugins\]\]'
 
 function s:get_stopline()  " {{{1
   let l:save_pos = getpos('.')
-  if !search(s:pat_plugins, 'bc')
+  if !search(s:pat_plugins, 'bcW')
     return
   endif
   let l:stopline = line('.')
@@ -44,7 +44,7 @@ function! textobj#dein#plugins_select_a()  " {{{1
   let l:start = getpos('.')
 
   if search(s:pat_plugins, 'W')
-    normal! {
+    normal! k
   else
     normal! G
   endif
@@ -55,26 +55,16 @@ endfunction
 
 
 function! textobj#dein#plugins_select_i()  " {{{1
-  if !search(s:pat_plugins, 'bcW')
-    return
-  endif
-  normal! j
-  let l:start = getpos('.')
-
-  if search(s:pat_plugins, 'Wc')
-    normal! {
-  else
-    normal! G
-  endif
-  call search('^\S', 'bc')
+  let l:select_a = textobj#dein#plugins_select_a()
+  call search('^\s*\S', 'bc')
   let l:end = getpos('.')
 
-  return ['V', l:start, l:end]
+  return ['V', l:select_a[1], l:end]
 endfunction
 
 
 function! textobj#dein#repo_select_i()  " {{{1
-  if !search(s:pat_plugins, 'bc')
+  if !search(s:pat_plugins, 'bcW')
     return
   endif
 
@@ -104,11 +94,12 @@ function! textobj#dein#hook_select_a()  " {{{1
   endif
   let l:start = getpos('.')
 
-  call search("'''", 'e')
-  call search("'''", 'e')
-  let l:end = getpos('.')
-
-  return ['V', l:start, l:end]
+  if search("'''", 'e') && search("'''", 'e')
+    let l:end = getpos('.')
+    return ['V', l:start, l:end]
+  else
+    return
+  endif
 endfunction
 
 
