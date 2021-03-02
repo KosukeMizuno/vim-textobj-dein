@@ -26,7 +26,7 @@ repo = 'KosukeMizuno/vim-textobj-dein'     |  |
 lazy = 1                                   |  |
 on_ft = 'toml'                             |  |
 hook_add = '''                ---          |  |
-" If blank line exist,          |          |  |
+" If a blank line exists,       |          |  |
                                 |          |  |
 " it will be ignored.         ah|        iP|  |
 '''                           ---        ---  |
