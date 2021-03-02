@@ -35,8 +35,8 @@ let g:textobj_dein_no_default_key_mappings = 0
 
 call textobj#user#plugin('dein', {
     \ 'plugins' : {
-    \      'select-a' : 'ap', 'select-a-function' : 'textobj#dein#plugins_select_a',
-    \      'select-i' : 'ip', 'select-i-function' : 'textobj#dein#plugins_select_i',
+    \      'select-a' : 'aP', 'select-a-function' : 'textobj#dein#plugins_select_a',
+    \      'select-i' : 'iP', 'select-i-function' : 'textobj#dein#plugins_select_i',
     \   },
     \ 'repo' : {
     \      'select-i' : 'ir', 'select-i-function' : 'textobj#dein#repo_select_i',

@@ -12,12 +12,12 @@ Text objects for toml file for [dein.vim](https://github.com/Shougo/dein.vim).
 
 | Keymap | target                    |
 | ------ | ------------------------- |
-| ap     | single plugin config      |
-| ip     | single plugin config      |
+| aP     | single plugin config      |
+| iP     | single plugin config      |
 | ir     | repository name           |
 | ah     | hook script with closures |
 
-- `ip` and `ap` selects plugin config between from a `[[plugins]]` to the next `[[plugins]]`.
+- `iP` and `aP` selects plugin config between from a `[[plugins]]` to the next `[[plugins]]`.
 - It selects beyond blank lines in a `hook_*` block.
 
 ```
@@ -28,9 +28,9 @@ on_ft = 'toml'                             |  |
 hook_add = '''                ---          |  |
 " If blank line exist,          |          |  |
                                 |          |  |
-" it will be ignored.         ah|        ip|  |
+" it will be ignored.         ah|        iP|  |
 '''                           ---        ---  |
-                                            ap|
+                                            aP|
                                          ------
 [[plugins]]
 repo = 'hoge/hoge'
