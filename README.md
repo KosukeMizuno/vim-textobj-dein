@@ -17,8 +17,24 @@ Text objects for toml file for [dein.vim](https://github.com/Shougo/dein.vim).
 | ir     | repository name           |
 | ah     | hook script with closures |
 
-If you prefer `ap` and `ip` as the vim's default (textobject for paragraph),  
-`let g:textobj_dein_no_default_key_mapings_plugins = 1`.
+- `ip` and `ap` selects plugin config between from a `[[plugins]]` to the next `[[plugins]]`.
+- It selects beyond blank lines in a `hook_*` block.
+
+```
+[[plugins]]                              ------
+repo = 'KosukeMizuno/vim-textobj-dein'     |  |
+lazy = 1                                   |  |
+on_ft = 'toml'                             |  |
+hook_add = '''                ---          |  |
+" If blank line exist,          |          |  |
+                                |          |  |
+" it will be ignored.         ah|        ip|  |
+'''                           ---        ---  |
+                                            ap|
+                                         ------
+[[plugins]]
+repo = 'hoge/hoge'
+```
 
 This plugins doesn't provide `ih` map for hook-script without closures.  
 It can be available by `<Plug>(textobj-precious-i)` in [osyo-manga/vim-precious](https://github.com/osyo-manga/vim-precious).
@@ -26,8 +42,12 @@ It can be available by `<Plug>(textobj-precious-i)` in [osyo-manga/vim-precious]
 ## tips
 
 Following keymap is useful ([tyru/open-browser.vim](https://github.com/tyru/open-browser.vim) is required.)
+
 ```
-nmap <buffer> gx "zyir:<C-u>OpenBrowserSearch <C-r>z<CR>
+augroup mytomlrc
+  autocmd!
+  autocmd Filetype toml nmap <buffer> gx "zyir:<C-u>OpenBrowserSearch <C-r>z<CR>
+augroup ENd
 ```
 
 ## License

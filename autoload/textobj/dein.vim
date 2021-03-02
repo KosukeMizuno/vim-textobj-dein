@@ -37,9 +37,28 @@ function s:get_stopline()  " {{{1
   return l:stopline
 endfunction
 
+
+function! textobj#dein#paragraph_select_a()  " {{{1
+  normal! {j
+  let l:start = getpos('.')
+  normal! }}{
+  let l:end = getpos('.')
+  return ['V', l:start, l:end]
+endfunction
+
+
+function! textobj#dein#paragraph_select_i()  " {{{1
+  normal! {j
+  let l:start = getpos('.')
+  normal! }k
+  let l:end = getpos('.')
+  return ['V', l:start, l:end]
+endfunction
+
+
 function! textobj#dein#plugins_select_a()  " {{{1
   if !search(s:pat_plugins, 'bcW')
-    return
+    return textobj#dein#paragraph_select_a()
   endif
   let l:start = getpos('.')
 
@@ -55,11 +74,20 @@ endfunction
 
 
 function! textobj#dein#plugins_select_i()  " {{{1
-  let l:select_a = textobj#dein#plugins_select_a()
+  if !search(s:pat_plugins, 'bcW')
+    return textobj#dein#paragraph_select_i()
+  endif
+  let l:start = getpos('.')
+
+  if search(s:pat_plugins, 'W')
+    normal! k
+  else
+    normal! G
+  endif
   call search('^\s*\S', 'bc')
   let l:end = getpos('.')
 
-  return ['V', l:select_a[1], l:end]
+  return ['V', l:start, l:end]
 endfunction
 
 
