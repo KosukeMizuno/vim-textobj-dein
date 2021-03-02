@@ -1,7 +1,5 @@
 # vim-textobj-dein
 
-Note: this plugin is under construction.
-
 Text objects for toml file for [dein.vim](https://github.com/Shougo/dein.vim).
 
 ## Requirements
